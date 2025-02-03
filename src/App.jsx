@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./components/NavBar";
-import NavbarTwo from "./components/NavbarTwo";
+import NavbarTwo from "./components/Navbartwo";
 import NewsGrid from "./components/NewsGrid";
 import WeatherWidget from "./components/WeatherWidget";
 import TimeWidget from "./components/TimeWidget";
