@@ -22,21 +22,23 @@ const TimeWidget = () => {
   };
 
   return (
-    <div className="bg-[#1a1f2e] text-white p-4 rounded-lg w-full h-[60px] flex items-center justify-between group transition-all duration-300 hover:bg-[#252b3b]">
+    <div className="bg-white shadow-lg rounded-xl p-4 w-full flex items-center justify-between group transition-all duration-300 hover:bg-gray-50 border border-gray-100">
       {/* Left side with icon and time */}
       <div className="flex items-center space-x-3">
-        <Clock className="h-5 w-5 text-sky-300 transition-transform duration-300 transform group-hover:scale-110" />
-        <span className="text-xl font-semibold tracking-tight">
+        <div className="p-2 bg-blue-50 rounded-lg transition-transform duration-300 transform group-hover:scale-110">
+          <Clock className="h-5 w-5 text-blue-500" />
+        </div>
+        <span className="text-xl font-semibold tracking-tight text-gray-800">
           {formatTime(time)}
         </span>
       </div>
 
       {/* Right side with date information */}
       <div className="text-right">
-        <p className="text-sm font-medium text-gray-100">
+        <p className="text-sm font-medium text-gray-700">
           {time.toLocaleDateString('en-US', { weekday: 'long' })}
         </p>
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-blue-400">
           {time.toLocaleDateString('en-US', { 
             month: 'long',
             day: 'numeric',

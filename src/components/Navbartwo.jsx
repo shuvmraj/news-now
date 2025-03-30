@@ -12,7 +12,7 @@ const NavbarTwo = ({ onCategoryChange, selectedCategory }) => {
   ];
 
   return (
-    <div className="relative bg-gray-900/50 rounded-lg mb-4">
+    <div className="relative bg-black rounded-lg mb-4">
       <div className="px-1 overflow-x-auto scrollbar-hide">
         <div className="flex items-center space-x-4 py-2 px-4 md:px-2 whitespace-nowrap">
           {categories.map((category) => (

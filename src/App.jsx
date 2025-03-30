@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/NavBar";
-import NavbarTwo from "./components/Navbartwo";
 import NewsGrid from "./components/NewsGrid";
 import WeatherWidget from "./components/WeatherWidget";
 import TimeWidget from "./components/TimeWidget";
@@ -11,7 +10,21 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("general");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [weatherData, setWeatherData] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -25,10 +38,6 @@ const App = () => {
     setSelectedCategory("");
   };
 
-  const handleWeatherUpdate = (data) => {
-    setWeatherData(data);
-  };
-
   const getHeadingText = () => {
     if (isSearching && searchQuery) {
       return `Search results for "${searchQuery}"`;
@@ -40,61 +49,104 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
-      <Navbar onSearch={handleSearch} />
+    <div className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+      {/* Navbar with proper spacing */}
+      <Navbar 
+        onSearch={handleSearch} 
+        onCategoryChange={handleCategoryChange} 
+        selectedCategory={selectedCategory} 
+      />
 
-      <main className="flex-1 flex flex-col pt-16">
-        <div className="fixed top-16 left-0 right-0 bg-black z-10">
-          <div className="container mx-auto px-4">
-            <div className="mb-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
-              <NavbarTwo
-                onCategoryChange={handleCategoryChange}
-                selectedCategory={selectedCategory}
-                disabled={isSearching}
-              />
+      {/* Main content area */}
+      <main className="flex-grow pt-24 pb-12">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Top widgets for mobile */}
+          <div className="md:hidden space-y-3 mb-6 mt-4">
+            <div className="grid grid-cols-2 gap-3">
+              <WeatherWidget />
+              <TimeWidget />
             </div>
-
-            <h2 className="text-white text-xl font-semibold mb-0">
-              {getHeadingText()}
-            </h2>
           </div>
-        </div>
 
-        <div className="flex-1 pt-24">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div
-                className="md:flex-1 order-2 md:order-1 overflow-y-auto pr-4"
-                style={{
-                  maxHeight: "calc(100vh - 200px)",
-                }}
-              >
-                <NewsGrid
-                  category={selectedCategory}
-                  searchQuery={searchQuery}
-                  isSearching={isSearching}
+          {/* Section heading with subtle divider */}
+          <div className="mb-6 pb-2 border-b border-gray-200">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{getHeadingText()}</h1>
+            <p className="text-sm text-gray-500 mt-1">Latest updates and trending stories</p>
+          </div>
+
+          {/* Main grid layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* News content - takes up more space on larger screens */}
+            <div className="lg:col-span-3">
+              <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <NewsGrid 
+                  category={selectedCategory} 
+                  searchQuery={searchQuery} 
+                  className="w-full mx-auto" 
                 />
               </div>
+            </div>
 
-              <div className="flex flex-col px-4 md:px-8 w-full md:w-64 order-1 md:order-2">
-                <div className="flex flex-row md:flex-col gap-2">
-                  <div className="w-1/2 md:w-full">
+            {/* Sidebar widgets - sticky on desktop */}
+            <aside className="lg:col-span-1 space-y-6">
+              {/* Hidden on mobile, shown on desktop */}
+              <div className="hidden lg:block sticky top-24">
+                <div className="space-y-6">
+                  <div className="bg-white rounded-xl shadow-sm p-4">
+                    <h2 className="font-semibold text-lg mb-3 text-gray-800">Weather</h2>
+                    <WeatherWidget />
+                  </div>
+                  
+                  <div className="bg-white rounded-xl shadow-sm p-4">
+                    <h2 className="font-semibold text-lg mb-3 text-gray-800">Local Time</h2>
                     <TimeWidget />
                   </div>
-                  <div className="w-1/2 md:w-full">
-                    <WeatherWidget onWeatherUpdate={handleWeatherUpdate} />
+                  
+                  <div className="bg-white rounded-xl shadow-sm p-4">
+                    <h2 className="font-semibold text-lg mb-3 text-gray-800">Markets</h2>
+                    <StockPrices />
                   </div>
                 </div>
-                <div className="w-full mt-4">
+              </div>
+              
+              {/* Mobile-only bottom widgets */}
+              <div className="lg:hidden flex overflow-x-auto pb-4 space-x-4 -mx-4 px-4 scrollbar-hide">
+                <div className="bg-white rounded-xl shadow-sm p-4 flex-shrink-0 w-64">
+                  <h2 className="font-semibold text-lg mb-3 text-gray-800">Markets</h2>
                   <StockPrices />
                 </div>
+                <div className="bg-white rounded-xl shadow-sm p-4 flex-shrink-0 w-64">
+                  <h2 className="font-semibold text-lg mb-3 text-gray-800">More News</h2>
+                  <p className="text-sm text-gray-500">Recommended for you</p>
+                </div>
               </div>
+            </aside>
+          </div>
+        </div>
+      </main>
+
+      {/* Newsletter signup before footer */}
+      <section className="bg-gray-900 text-white py-10">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-2">Stay updated</h2>
+            <p className="text-gray-400 mb-6">Get the daily digest delivered to your inbox</p>
+            <div className="flex flex-col sm:flex-row gap-2 justify-center">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-emerald-500 w-full sm:w-auto"
+              />
+              <button className="px-6 py-2 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition-colors">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
+      </section>
 
-        <Footer />
-      </main>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
