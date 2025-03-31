@@ -3,26 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add this in your global styles (e.g., in `index.css` or `App.css`) */
-::-webkit-scrollbar {
-    width: 8px; /* Adjust the width of the scrollbar */
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   
-  ::-webkit-scrollbar-thumb {
-    background-color: gray; /* Gray color for the scrollbar thumb */
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: rgba(160, 160, 160, 0.1); /* Light background for the scrollbar track */
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .bg-gradient-animation {
+    background: linear-gradient(135deg, #f7f7f7, #e2e8f0, #cbd5e1);
+    background-size: 200% 200%;
+    animation: gradientMove 12s infinite linear;
   }
   
