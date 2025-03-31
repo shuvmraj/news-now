@@ -133,18 +133,18 @@ const WeatherWidget = () => {
   
   if (loading) {
     return (
-      <div className="w-full rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-4 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="w-full rounded-xl bg-zinc-900 text-zinc-200 p-4 shadow-lg shadow-black/40 border border-zinc-800">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-              <Cloud className="h-5 w-5 text-blue-500" />
+            <div className="p-2 bg-zinc-800 rounded-lg">
+              <Cloud className="h-5 w-5 text-blue-400" />
             </div>
             <span className="text-lg font-semibold">Weather</span>
           </div>
         </div>
         <div className="flex items-center justify-center p-8">
-          <Loader className="h-6 w-6 animate-spin text-blue-500 mr-2" />
-          <p className="text-sm text-gray-600 dark:text-gray-300">Loading weather data...</p>
+          <Loader className="h-6 w-6 animate-spin text-blue-400 mr-2" />
+          <p className="text-sm text-zinc-400">Loading weather data...</p>
         </div>
       </div>
     );
@@ -152,11 +152,11 @@ const WeatherWidget = () => {
   
   if (error) {
     return (
-      <div className="w-full rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-4 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="w-full rounded-xl bg-zinc-900 text-zinc-200 p-4 shadow-lg shadow-black/40 border border-zinc-800">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-              <Cloud className="h-5 w-5 text-blue-500" />
+            <div className="p-2 bg-zinc-800 rounded-lg">
+              <Cloud className="h-5 w-5 text-blue-400" />
             </div>
             <span className="text-lg font-semibold">Weather</span>
           </div>
@@ -168,11 +168,11 @@ const WeatherWidget = () => {
             value={searchCity}
             onChange={(e) => setSearchCity(e.target.value)}
             placeholder="Search city..."
-            className="w-full px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-700/30 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 rounded-full text-gray-400 hover:text-blue-500"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 rounded-full text-zinc-400 hover:text-blue-400"
             disabled={searching}
           >
             {searching ? (
@@ -183,11 +183,11 @@ const WeatherWidget = () => {
           </button>
         </form>
         
-        <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30">
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+        <div className="p-4 rounded-lg bg-red-900/20 border border-red-900/30">
+          <p className="text-sm text-red-400">{error}</p>
           <button 
             onClick={refreshWeather} 
-            className="mt-2 px-3 py-1 text-xs rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors flex items-center gap-1"
+            className="mt-2 px-3 py-1 text-xs rounded-full bg-red-900/30 text-red-400 hover:bg-red-900/50 transition-colors flex items-center gap-1"
           >
             <RefreshCw className="h-3 w-3" /> Try again
           </button>
@@ -197,19 +197,19 @@ const WeatherWidget = () => {
   }
   
   return (
-    <div className="w-full rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+    <div className="w-full rounded-xl bg-zinc-900 text-zinc-200 shadow-lg shadow-black/40 border border-zinc-800 overflow-hidden">
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-              <Cloud className="h-5 w-5 text-blue-500" />
+            <div className="p-2 bg-zinc-800 rounded-lg">
+              <Cloud className="h-5 w-5 text-blue-400" />
             </div>
             <span className="text-lg font-semibold">Weather</span>
           </div>
           <div className="flex items-center gap-2">
             <button 
               onClick={refreshWeather} 
-              className={`p-1.5 rounded-full text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all ${refreshing ? 'animate-spin text-blue-500' : ''}`}
+              className={`p-1.5 rounded-full text-zinc-400 hover:text-blue-400 hover:bg-zinc-800 transition-all ${refreshing ? 'animate-spin text-blue-400' : ''}`}
             >
               <RefreshCw className="h-4 w-4" />
             </button>
@@ -222,11 +222,11 @@ const WeatherWidget = () => {
             value={searchCity}
             onChange={(e) => setSearchCity(e.target.value)}
             placeholder="Search city..."
-            className="w-full px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-700/30 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-zinc-200 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 rounded-full text-gray-400 hover:text-blue-500"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 rounded-full text-zinc-400 hover:text-blue-400"
             disabled={searching}
           >
             {searching ? (
@@ -239,46 +239,40 @@ const WeatherWidget = () => {
         
         {weatherData && (
           <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30">
+            <div className="p-4 rounded-lg bg-zinc-800 border border-zinc-700">
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center">
-                  <div className="p-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm mr-3">
+                  <div className="p-2 bg-zinc-900 rounded-lg shadow-sm mr-3">
                     {getWeatherIcon(weatherData.condition, weatherData.icon)}
                   </div>
                   <div>
                     <h3 className="font-bold text-xl">{weatherData.temperature}°C</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">{weatherData.condition}</p>
+                    <p className="text-sm text-zinc-400 capitalize">{weatherData.condition}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center justify-end text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center justify-end text-sm text-zinc-400">
                     <MapPin className="h-3 w-3 mr-1" />
                     <span>{weatherData.city}, {weatherData.country}</span>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-500">Updated at {weatherData.timestamp}</p>
+                  <p className="text-xs text-zinc-500">Updated at {weatherData.timestamp}</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-3 gap-2 mt-4">
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Feels like</p>
+                <div className="bg-zinc-900 p-2 rounded-lg text-center">
+                  <p className="text-xs text-zinc-400">Feels like</p>
                   <p className="font-medium">{weatherData.feels_like}°C</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Humidity</p>
+                <div className="bg-zinc-900 p-2 rounded-lg text-center">
+                  <p className="text-xs text-zinc-400">Humidity</p>
                   <p className="font-medium">{weatherData.humidity}%</p>
                 </div>
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg text-center">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Wind</p>
+                <div className="bg-zinc-900 p-2 rounded-lg text-center">
+                  <p className="text-xs text-zinc-400">Wind</p>
                   <p className="font-medium">{weatherData.wind} m/s</p>
                 </div>
               </div>
-            </div>
-            
-            <div className="pt-1 flex justify-center">
-              <button className="text-xs text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium">
-                View detailed forecast
-              </button>
             </div>
           </div>
         )}

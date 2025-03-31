@@ -71,12 +71,12 @@ The NewsNow Team`,
   }
 
   return (
-    <div className="bg-gray-900 rounded-xl shadow-sm p-4">
-      <h2 className="font-semibold text-lg mb-2 text-white">Stay updated</h2>
-      <p className="text-gray-400 text-sm mb-4">Get the daily digest delivered to your inbox</p>
+    <div className="bg-zinc-900 rounded-xl shadow-lg shadow-black/40 p-4 border border-zinc-800">
+      <h2 className="font-semibold text-lg mb-2 text-zinc-100">Stay updated</h2>
+      <p className="text-zinc-400 text-sm mb-4">Get the daily digest delivered to your inbox</p>
 
       {subscriptionStatus?.success ? (
-        <div className="bg-emerald-500/20 border border-emerald-500/50 rounded-md p-3 text-emerald-400 text-sm text-center mb-2">
+        <div className="bg-emerald-900/20 border border-emerald-900/30 rounded-md p-3 text-emerald-400 text-sm text-center mb-2">
           {subscriptionStatus.message}
         </div>
       ) : (
@@ -86,13 +86,17 @@ The NewsNow Team`,
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
-            className="px-3 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-emerald-500 w-full text-sm placeholder-gray-400"
+            className="px-3 py-2 rounded-lg bg-zinc-800 text-zinc-200 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-sm placeholder-zinc-500"
             disabled={isSubmitting}
             required
           />
           <button
             type="submit"
-            className={`w-full px-4 py-2 ${isSubmitting ? "bg-emerald-600 cursor-wait" : "bg-emerald-500 hover:bg-emerald-600"} text-white rounded-lg font-medium transition-colors text-sm`}
+            className={`w-full px-4 py-2 ${
+              isSubmitting 
+                ? "bg-blue-600/80 cursor-wait" 
+                : "bg-blue-500 hover:bg-blue-600"
+            } text-white rounded-lg font-medium transition-colors text-sm`}
             disabled={isSubmitting}
           >
             {isSubmitting ? "Subscribing..." : "Subscribe"}
@@ -101,12 +105,12 @@ The NewsNow Team`,
       )}
 
       {subscriptionStatus?.success === false && (
-        <div className="mt-2 bg-red-500/20 border border-red-500/50 rounded-md p-2 text-red-400 text-xs">
+        <div className="mt-2 bg-red-900/20 border border-red-900/30 rounded-md p-2 text-red-400 text-xs">
           {subscriptionStatus.message}
         </div>
       )}
 
-      <p className="mt-3 text-xs text-gray-400">We respect your privacy. Unsubscribe at any time.</p>
+      <p className="mt-3 text-xs text-zinc-500">We respect your privacy. Unsubscribe at any time.</p>
     </div>
   )
 }

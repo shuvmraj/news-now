@@ -4,13 +4,21 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-gray-800">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          <p className="text-gray-500 text-xs">
-            © {currentYear} NewsNow. All rights reserved.
+    <footer className="mt-auto border-t border-zinc-800 bg-black text-zinc-400">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+          <p className="hover:text-zinc-300 transition-colors">© {currentYear} NewsNow. All rights reserved.</p>
+          <p className="mt-2 md:mt-0">
+            Designed by{" "}
+            <a
+              href="https://github.com/whoshubhamsinha"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-300 hover:text-white transition-colors duration-300"
+            >
+              @whoshubhamsinha
+            </a>
           </p>
-          <p className="text-gray-500 text-xs">Designed by @whoshubhamsinha</p>
         </div>
       </div>
     </footer>

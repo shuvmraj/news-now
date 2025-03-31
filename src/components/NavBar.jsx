@@ -155,14 +155,14 @@ The NewsNow Team`,
   return (
     <nav className="fixed top-0 left-0 w-full z-10">
       {/* Main navbar */}
-      <div className="bg-black/90 backdrop-blur-md py-3 px-4 shadow-md border-b border-gray-800">
+      <div className="bg-black border-b border-zinc-800 py-3 px-4 shadow-lg shadow-black/40">
         <div className="container mx-auto flex items-center justify-between relative">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <h1 className="text-xl font-bold text-white tracking-tight">
-              NEWS<span className="text-emerald-400">NOW</span>
+              NEWS<span className="text-blue-400">NOW</span>
             </h1>
-            <Mic className="h-4 w-4 text-emerald-400" />
+            <Mic className="h-4 w-4 text-blue-400" />
           </div>
 
           {/* Search bar (hidden on mobile) */}
@@ -173,11 +173,11 @@ The NewsNow Team`,
               onChange={handleSearchChange}
               onKeyPress={handleKeyPress}
               placeholder="Search news..."
-              className="w-full px-4 py-1.5 pl-9 rounded-full border border-gray-700 focus:outline-none focus:border-emerald-400 bg-gray-900/50 text-white placeholder-gray-400 text-sm"
+              className="w-full px-4 py-1.5 pl-9 rounded-full border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-900 text-zinc-200 placeholder-zinc-500 text-sm"
             />
             <button
               onClick={handleSearchSubmit}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-emerald-400 transition-colors"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-blue-400 transition-colors"
             >
               <Search className="h-4 w-4" />
             </button>
@@ -187,7 +187,7 @@ The NewsNow Team`,
           <div className="hidden md:flex items-center space-x-5">
             <button
               onClick={toggleNotificationModal}
-              className="text-gray-400 hover:text-emerald-400 transition-colors relative"
+              className="text-zinc-400 hover:text-blue-400 transition-colors relative"
               aria-label="Subscribe to notifications"
             >
               <Bell className="h-5 w-5 cursor-pointer" />
@@ -213,17 +213,17 @@ The NewsNow Team`,
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile controls with updated styling */}
           <div className="flex items-center space-x-4 md:hidden">
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="text-gray-400 hover:text-emerald-400 transition-colors"
+              className="text-zinc-400 hover:text-blue-400 transition-colors"
             >
               <Search className="h-5 w-5" />
             </button>
             <button
               onClick={toggleNotificationModal}
-              className="text-gray-400 hover:text-emerald-400 transition-colors"
+              className="text-zinc-400 hover:text-blue-400 transition-colors"
               aria-label="Subscribe to notifications"
             >
               <Bell className="h-5 w-5" />
@@ -247,7 +247,7 @@ The NewsNow Team`,
                 onChange={handleSearchChange}
                 onKeyPress={handleKeyPress}
                 placeholder="Search news..."
-                className="w-full px-4 py-1.5 pl-9 rounded-full border border-gray-700 focus:outline-none focus:border-emerald-400 bg-gray-900/50 text-white placeholder-gray-400 text-sm"
+                className="w-full px-4 py-1.5 pl-9 rounded-full border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-900 text-zinc-200 placeholder-zinc-500 text-sm"
               />
               <button
                 onClick={handleSearchSubmit}
@@ -261,7 +261,7 @@ The NewsNow Team`,
       </div>
 
       {/* Categories bar */}
-      <div className="bg-black/80 px-2 py-1 shadow-md relative">
+      <div className="bg-black border-b border-zinc-800 px-2 py-1 shadow-lg shadow-black/40 relative">
         <button
           onClick={() => scroll("left")}
           className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-black/90 to-transparent pl-1 pr-4 h-full flex items-center"
@@ -277,8 +277,8 @@ The NewsNow Team`,
                 onClick={() => onCategoryChange(category.value)}
                 className={`text-xs px-3 py-1 rounded-full transition-colors ${
                   selectedCategory === category.value
-                    ? "bg-emerald-500/90 text-white"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    ? "bg-blue-500 text-white"
+                    : "text-zinc-400 hover:text-white hover:bg-zinc-800"
                 }`}
               >
                 {category.display}
@@ -297,7 +297,7 @@ The NewsNow Team`,
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/95 shadow-lg absolute left-0 right-0 z-20 border-t border-gray-800">
+        <div className="md:hidden bg-black shadow-lg absolute left-0 right-0 z-20 border-t border-zinc-800">
           <div className="flex flex-col p-4">
             <div className="grid grid-cols-2 gap-2 mb-4">
               {categories.map((category) => (
@@ -345,28 +345,28 @@ The NewsNow Team`,
 
       {/* Notification Subscription Modal */}
       {isNotificationModalOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="notification-modal bg-gray-900 border border-gray-800 rounded-lg shadow-xl w-full max-w-md">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="notification-modal bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl w-full max-w-md">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold text-white">Get News Notifications</h3>
-                <button onClick={toggleNotificationModal} className="text-gray-400 hover:text-white">
+                <h3 className="text-xl font-semibold text-zinc-100">Get News Notifications</h3>
+                <button onClick={toggleNotificationModal} className="text-zinc-400 hover:text-zinc-200">
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
               {subscriptionStatus?.success ? (
-                <div className="bg-emerald-500/20 border border-emerald-500/50 rounded-md p-4 text-emerald-400 text-center">
+                <div className="bg-blue-900/20 border border-blue-900/30 rounded-md p-4 text-blue-400 text-center">
                   {subscriptionStatus.message}
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleNotificationSubscribe}>
-                  <p className="mb-4 text-gray-300 text-sm">
+                  <p className="mb-4 text-zinc-300 text-sm">
                     Subscribe to receive news updates directly to your inbox.
                   </p>
 
                   <div className="mb-4">
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300">
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-zinc-300">
                       Email address
                     </label>
                     <input
@@ -376,14 +376,14 @@ The NewsNow Team`,
                       value={email}
                       onChange={handleEmailChange}
                       placeholder="your.email@example.com"
-                      className="w-full px-4 py-2 rounded-md border border-gray-700 focus:outline-none focus:border-emerald-400 bg-gray-800 text-white placeholder-gray-500"
+                      className="w-full px-4 py-2 rounded-md border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-800 text-zinc-200 placeholder-zinc-500"
                       disabled={isSubmitting}
                       required
                     />
                   </div>
 
                   {subscriptionStatus?.success === false && (
-                    <div className="mb-4 bg-red-500/20 border border-red-500/50 rounded-md p-3 text-red-400 text-sm">
+                    <div className="mb-4 bg-red-900/20 border border-red-900/30 rounded-md p-3 text-red-400 text-sm">
                       {subscriptionStatus.message}
                     </div>
                   )}
@@ -392,15 +392,15 @@ The NewsNow Team`,
                     type="submit"
                     className={`w-full py-2 px-4 rounded-md text-white ${
                       isSubmitting
-                        ? "bg-emerald-600 cursor-wait"
-                        : "bg-emerald-500 hover:bg-emerald-600 transition-colors"
+                        ? "bg-blue-600/80 cursor-wait"
+                        : "bg-blue-500 hover:bg-blue-600 transition-colors"
                     }`}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Sending..." : "Subscribe"}
                   </button>
 
-                  <p className="mt-3 text-xs text-gray-400">We won't spam you. You can unsubscribe at any time.</p>
+                  <p className="mt-3 text-xs text-zinc-500">We won't spam you. You can unsubscribe at any time.</p>
                 </form>
               )}
             </div>
@@ -408,8 +408,8 @@ The NewsNow Team`,
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
 
