@@ -261,38 +261,42 @@ The NewsNow Team`,
       </div>
 
       {/* Categories bar */}
-      <div className="bg-black border-b border-zinc-800 px-2 py-1 shadow-lg shadow-black/40 relative">
-        <button
-          onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-black/90 to-transparent pl-1 pr-4 h-full flex items-center"
-        >
-          <ChevronLeft className="h-5 w-5 text-gray-400 hover:text-emerald-400" />
-        </button>
+      <div className="bg-black border-b border-zinc-800 shadow-lg shadow-black/40 relative">
+        <div className="container mx-auto">
+          <div className="relative px-4">
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-black/90 to-transparent pl-1 pr-4 h-full flex items-center"
+            >
+              <ChevronLeft className="h-5 w-5 text-zinc-400 hover:text-blue-400" />
+            </button>
 
-        <div className="overflow-x-auto scrollbar-hide" ref={categoriesRef}>
-          <div className="flex items-center space-x-1 py-1 px-8 md:px-4 whitespace-nowrap">
-            {categories.map((category) => (
-              <button
-                key={category.value}
-                onClick={() => onCategoryChange(category.value)}
-                className={`text-xs px-3 py-1 rounded-full transition-colors ${
-                  selectedCategory === category.value
-                    ? "bg-blue-500 text-white"
-                    : "text-zinc-400 hover:text-white hover:bg-zinc-800"
-                }`}
-              >
-                {category.display}
-              </button>
-            ))}
+            <div className="overflow-x-auto scrollbar-hide" ref={categoriesRef}>
+              <div className="flex items-center space-x-1 py-2 whitespace-nowrap">
+                {categories.map((category) => (
+                  <button
+                    key={category.value}
+                    onClick={() => onCategoryChange(category.value)}
+                    className={`text-xs px-3 py-1 rounded-full transition-colors ${
+                      selectedCategory === category.value
+                        ? "bg-blue-500 text-white"
+                        : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+                    }`}
+                  >
+                    {category.display}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-black/90 to-transparent pr-1 pl-4 h-full flex items-center"
+            >
+              <ChevronRight className="h-5 w-5 text-zinc-400 hover:text-blue-400" />
+            </button>
           </div>
         </div>
-
-        <button
-          onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-black/90 to-transparent pr-1 pl-4 h-full flex items-center"
-        >
-          <ChevronRight className="h-5 w-5 text-gray-400 hover:text-emerald-400" />
-        </button>
       </div>
 
       {/* Mobile Menu */}

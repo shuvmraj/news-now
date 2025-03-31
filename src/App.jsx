@@ -53,9 +53,9 @@ const App = () => {
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        className="flex-grow pt-20 pb-12 flex flex-col"
+        className="flex-grow pt-24 pb-12 flex flex-col"
       >
-        <div className="container mx-auto px-4 md:px-6 flex-grow">
+        <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-7xl flex-grow">
           {/* Weather Widget for Mobile */}
           <motion.div 
             initial={{ scale: 0.98, opacity: 0 }}
@@ -122,22 +122,24 @@ const App = () => {
               initial={{ x: 30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-              className="lg:col-span-1 space-y-6 hidden lg:block sticky top-24"
+              className="lg:col-span-1 space-y-6 hidden lg:block"
             >
-              <motion.div 
-                whileHover={{ scale: 1.01, y: -2 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="bg-zinc-900 rounded-xl shadow-lg shadow-black/40 p-4 border border-zinc-800"
-              >
-                <WeatherWidget />
-              </motion.div>
+              <div className="sticky top-24 space-y-6">
+                <motion.div 
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="bg-zinc-900 rounded-xl shadow-lg shadow-black/40 p-4 border border-zinc-800"
+                >
+                  <WeatherWidget />
+                </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.01, y: -2 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-              >
-                <SubscriptionWidget />
-              </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  <SubscriptionWidget />
+                </motion.div>
+              </div>
             </motion.aside>
           </div>
         </div>
@@ -149,7 +151,9 @@ const App = () => {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-auto"
       >
-        <Footer />
+        <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-7xl">
+          <Footer />
+        </div>
       </motion.footer>
     </motion.div>
   )
