@@ -14,11 +14,11 @@ const NewsGrid = ({ category, searchQuery, className }) => {
       setLoading(true);
       
       try {
-        const apiKey = "85faf3b6e2484912ad88063e04f0bdec";
-        const baseUrl = "https://newsapi.org/v2/top-headlines";
+        const apiKey = "4cecbf9b3d8482a76587b719f270294e";
+        const baseUrl = "https://gnews.io/api/v4";
         const url = searchQuery
-          ? `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}&language=en`
-          : `${baseUrl}?country=us&category=${category}&apiKey=${apiKey}`;
+          ? `${baseUrl}/search?q=${searchQuery}&apikey=${apiKey}&lang=en&max=20`
+          : `${baseUrl}/top-headlines?category=${category}&country=us&apikey=${apiKey}&max=20`;
         
         const response = await fetch(url);
         
@@ -29,13 +29,17 @@ const NewsGrid = ({ category, searchQuery, className }) => {
         const data = await response.json();
         
         if (data && data.articles && data.articles.length > 0) {
-          setNews(data.articles);
+          // Filter out articles without images or descriptions
+          const filteredArticles = data.articles.filter(
+            article => article.image && article.description
+          );
+          setNews(filteredArticles);
         } else {
           setError("No news available");
           setNews([]);
         }
       } catch (err) {
-        console.error("NewsAPI Error:", err);
+        console.error("GNews API Error:", err);
         setError(err.message || "Failed to fetch news");
       } finally {
         setLoading(false);
@@ -117,10 +121,10 @@ const NewsGrid = ({ category, searchQuery, className }) => {
                 </p>
               )}
 
-              {article.urlToImage && (
+              {article.image && (
                 <div className="mt-3">
                   <img 
-                    src={article.urlToImage} 
+                    src={article.image} 
                     alt={article.title} 
                     className="w-full h-32 object-cover rounded-lg"
                     onError={(e) => e.target.style.display = 'none'}
