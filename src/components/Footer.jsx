@@ -11,7 +11,7 @@ const Footer = () => {
           <p className="mt-2 md:mt-0">
             Designed by{" "}
             <a
-              href="https://github.com/whoshubhamsinha"
+              href="https://shuvm.me/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-300 hover:text-white transition-colors duration-300"
