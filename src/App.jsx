@@ -66,15 +66,7 @@ const App = () => {
             <WeatherWidget />
           </motion.div>
 
-          {/* Mobile Subscription Widget */}
-          <motion.div 
-            initial={{ scale: 0.98, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-            className="md:hidden mb-6"
-          >
-            <SubscriptionWidget />
-          </motion.div>
+          {/* Removed Mobile Subscription Widget */}
 
           <motion.div 
             initial={{ y: 20, opacity: 0 }}

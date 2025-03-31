@@ -89,100 +89,105 @@ const NewsGrid = ({ category, searchQuery, className }) => {
   };
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-6 ${className}`}>
       {/* News Grid */}
-      <div className="space-y-4">
+      <div className="grid gap-6">
         {currentNews.map((article, index) => (
           <motion.div 
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700 hover:bg-zinc-800 transition-all"
+            className="bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 backdrop-blur-sm rounded-xl p-5 border border-zinc-700/50 hover:border-zinc-600/50 hover:shadow-xl hover:shadow-black/20 transition-all duration-300"
           >
             <a 
               href={article.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="block"
+              className="block space-y-4"
             >
-              <h3 className="text-lg font-medium text-zinc-100 hover:text-blue-400 transition-colors line-clamp-2">
-                {article.title}
-              </h3>
-              
-              <div className="flex items-center mt-2 text-sm text-zinc-400">
-                <span>{article.source.name || "News Source"}</span>
-                <ExternalLink className="ml-1 w-3 h-3" />
-              </div>
-              
-              {article.description && (
-                <p className="mt-2 text-zinc-300 text-sm line-clamp-2">
-                  {article.description}
-                </p>
-              )}
-
               {article.image && (
-                <div className="mt-3">
+                <div className="relative overflow-hidden rounded-lg aspect-video">
                   <img 
                     src={article.image} 
                     alt={article.title} 
-                    className="w-full h-32 object-cover rounded-lg"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
                     onError={(e) => e.target.style.display = 'none'}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </div>
               )}
 
-              <div className="flex items-center justify-between mt-3 text-xs text-zinc-500">
-                {article.publishedAt && (
-                  <span>
-                    {new Date(article.publishedAt).toLocaleString()}
-                  </span>
+              <div className="space-y-3">
+                <h3 className="text-xl font-semibold text-zinc-100 hover:text-blue-400 transition-colors line-clamp-2">
+                  {article.title}
+                </h3>
+                
+                <div className="flex items-center space-x-2 text-sm text-zinc-400">
+                  <span className="font-medium">{article.source.name || "News Source"}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </div>
+                
+                {article.description && (
+                  <p className="text-zinc-300 text-sm leading-relaxed line-clamp-3">
+                    {article.description}
+                  </p>
                 )}
-                <span className="bg-blue-900/30 text-blue-400 px-2 py-1 rounded-full">
-                  {category}
-                </span>
+
+                <div className="flex items-center justify-between pt-2 text-xs">
+                  {article.publishedAt && (
+                    <span className="text-zinc-500 font-medium">
+                      {new Date(article.publishedAt).toLocaleString()}
+                    </span>
+                  )}
+                  <span className="bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-full font-medium">
+                    {category}
+                  </span>
+                </div>
               </div>
             </a>
           </motion.div>
         ))}
       </div>
 
-      {/* Pagination */}
+      {/* Pagination with updated styling */}
       {!loading && !error && totalPages > 1 && (
-        <div className="flex justify-center items-center space-x-2 pt-6">
+        <div className="flex justify-center items-center space-x-3 pt-8">
           <button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`p-2 rounded-lg ${
+            className={`p-2 rounded-lg transition-all duration-300 ${
               currentPage === 1 
-                ? 'text-zinc-600' 
-                : 'text-zinc-400 hover:text-blue-400 hover:bg-zinc-800'
+                ? 'text-zinc-600 cursor-not-allowed' 
+                : 'text-zinc-400 hover:text-blue-400 hover:bg-blue-500/10'
             }`}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           
-          {[...Array(totalPages)].map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => paginate(idx + 1)}
-              className={`px-3 py-1 rounded-lg transition-colors ${
-                currentPage === idx + 1
-                  ? 'bg-blue-500 text-white'
-                  : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
-              }`}
-            >
-              {idx + 1}
-            </button>
-          ))}
+          <div className="flex items-center space-x-2">
+            {[...Array(totalPages)].map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => paginate(idx + 1)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  currentPage === idx + 1
+                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/25'
+                    : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+                }`}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
 
           <button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className={`p-2 rounded-lg ${
+            className={`p-2 rounded-lg transition-all duration-300 ${
               currentPage === totalPages 
-                ? 'text-zinc-600' 
-                : 'text-zinc-400 hover:text-blue-400 hover:bg-zinc-800'
+                ? 'text-zinc-600 cursor-not-allowed' 
+                : 'text-zinc-400 hover:text-blue-400 hover:bg-blue-500/10'
             }`}
           >
             <ChevronRight className="h-5 w-5" />
