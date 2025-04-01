@@ -14,7 +14,7 @@ const NewsGrid = ({ category, searchQuery, className }) => {
       setLoading(true);
       
       try {
-        const apiKey = "4cecbf9b3d8482a76587b719f270294e";
+        const apiKey = import.meta.env.VITE_GNEWS_API_KEY;
         const baseUrl = "https://gnews.io/api/v4";
         const url = searchQuery
           ? `${baseUrl}/search?q=${searchQuery}&apikey=${apiKey}&lang=en&max=20`

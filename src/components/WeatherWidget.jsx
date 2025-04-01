@@ -9,17 +9,15 @@ const WeatherWidget = () => {
   const [searchCity, setSearchCity] = useState("");
   const [searching, setSearching] = useState(false);
 
-  const API_KEY = "88b0b49a3270eaa727ed8d7f120fc902";
-
   const fetchWeatherData = async (latitude, longitude, cityName = null) => {
     try {
       setRefreshing(true);
       
       let url;
       if (cityName) {
-        url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`;
+        url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&units=metric`;
       } else {
-        url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+        url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&units=metric`;
       }
       
       const response = await fetch(url);
